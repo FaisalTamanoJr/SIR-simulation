@@ -1,15 +1,19 @@
 import math
 
 def compute_for_values(s0, i0, a, c, sigma, t):
-    output = {"i_max": 0,
-               }
+    output = {
+              "susceptible": 0,
+              "infected": 0,
+              "recovered": 0,
+              "max infected": 0
+    }
 
     # Warn the user if they do not provide a number as their inputs
     try:
         s0 = int(s0)
         i0 = int(i0)
-        a = float(s0)
-        c = float(c0)
+        a = float(a)
+        c = float(c)
         sigma = float(sigma)
         t = float(t)
     except ValueError:
@@ -22,25 +26,32 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     if (i0 <= 0):
         return "Error: The number of infected individuals must be greater than 0"
 
+
     # Calculate population at time t
-    N = S0 + I0
+    """
+    I'll still need to modify some of the equations here
+    - Faisal
+    """
+    n = s0 + i0
     r = a * c
     p = sigma / r
 
-    S = S0 * math.exp(-r * I0 * t)
-    I = (N / (1 + p * S0)) * math.exp((r * S0 - sigma) * t) - p * S
-    R = N - S - I
+    # these constants are just temp, will edit them next time
+    s_o = 1
+    i_o = 2
+    r_o = 3
+    imax = 4
+    #s_o = s0 * math.exp(-r * i0 * t)
+    #i_o = (n / (1 + p * s0)) * math.exp((r * s0 - sigma) * t) - p * s_o
+    #r_o = n - s_o - i_o
 
     # Calculate maximum number of infected individuals
-    Imax = N - p - math.log(S0)
+    #imax = n - p - math.log(s0)
 
-    # Print results
-    print("Population at time t:")
-    print("Susceptible individuals: ", S)
-    print("Infected individuals: ", I)
-    print("Recovered individuals: ", R)
-    print("Maximum number of infected individuals: ", Imax)
+    # add the results to the dictionary
+    output["susceptible"] = s_o
+    output["infected"] = i_o
+    output["recovered"] = r_o
+    output["max infected"] = imax
 
-
-if __name__ == "__main__":
-    main()
+    return output

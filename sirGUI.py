@@ -1,4 +1,4 @@
-from tkinter import * 
+from tkinter import *
 import sympy as sp
 
 from scipy.integrate import odeint
@@ -12,12 +12,12 @@ inputsFrame = Frame(padx=20, pady=30)
 eqFrame = Frame(padx=20, pady=30)
 
 lbl_inputs = Label(inputsFrame, text = "INPUTS")
-lbl_S0 = Label(inputsFrame, text = "S(0): ")
-lbl_I0 = Label(inputsFrame, text = "I(0): ")
-lbl_constantA = Label(inputsFrame, text = "constant a: ")
-lbl_constantC = Label(inputsFrame, text = "constant c: ")
-lbl_constantSigma = Label(inputsFrame, text = "constant σ: ")
-lbl_varTime = Label(inputsFrame, text = "Simulate at t=")
+lbl_S0 = Label(inputsFrame, text = "Initial number of susceptible individuals: ")
+lbl_I0 = Label(inputsFrame, text = "Initial number of infected individuals: ")
+lbl_constantA = Label(inputsFrame, text = " Rate of infected people infecting susceptible individuals: ")
+lbl_constantC = Label(inputsFrame, text = "Rate of people coming into contact with an infected person: ")
+lbl_constantSigma = Label(inputsFrame, text = "Rate of people recovering: ")
+lbl_varTime = Label(inputsFrame, text = "Time (in days): ")
 
 lbl_inputs.grid(row=0, column=0, sticky="W")
 lbl_S0.grid(row=1, column=0, sticky="E")
@@ -53,10 +53,10 @@ already_simulated = False
 def simulate_on_click():
 
     global already_simulated
-    if already_simulated == True: 
+    if already_simulated == True:
         for widget in eqFrame.winfo_children():
             widget.destroy()
-    
+
     s0 = int(ent_S0.get())
     i0 = int(ent_I0.get())
     constantA = int(ent_constantA.get())

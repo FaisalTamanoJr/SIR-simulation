@@ -1,18 +1,6 @@
 import math
 
-def main():
-    # Get user input for initial values
-    S0 = int(input("Enter the initial number of susceptible individuals: "))
-    I0 = int(input("Enter the initial number of infected individuals: "))
-
-    
-    # STILL WORKING ON THIS PART
-    a = float(input("Enter the value of a: "))
-    c = float(input("Enter the value of c: "))
-    sigma = float(input("Enter the value of σ: "))
-
-    # Get user input for time t
-    t = int(input("Enter the time in days: "))
+def compute_for_values(s0, i0, a, c, sigma, t):
 
     # Calculate population at time t
     N = S0 + I0
@@ -32,3 +20,7 @@ def main():
     print("Infected individuals: ", I)
     print("Recovered individuals: ", R)
     print("Maximum number of infected individuals: ", Imax)
+
+
+if __name__ == "__main__":
+    main()

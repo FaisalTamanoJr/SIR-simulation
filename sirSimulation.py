@@ -1,6 +1,8 @@
 import math
 
 def compute_for_values(s0, i0, a, c, sigma, t):
+    output = {"i_max": 0,
+               }
 
     # Warn the user if they do not provide a number as their inputs
     try:

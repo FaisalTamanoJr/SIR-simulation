@@ -43,7 +43,7 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     # Extract the solutions for S, I, and R
     S, I, R = sol[:, 0], sol[:, 1], sol[:, 2]
 
-    # Calculate the maximum number of infected individuals
+    # Calculate the maximum number of infected individuals, This Needs Some Work!
     imax = max(I)
 
     # Plot the results

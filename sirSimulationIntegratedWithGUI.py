@@ -6,6 +6,8 @@ from scipy import integrate
 
 def compute_for_values(s0, i0, a, c, sigma, t):
     # Warn the user if they do not provide a number as their inputs
+    #DISPLAY DATA ON DAY
+    display_day=7
     try:
         s0 = int(s0)
         i0 = int(i0)
@@ -37,10 +39,10 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     # Set up the time grid
     t_span = np.linspace(0, t, 100)
 
-    # Solve the differential equations
+    # Solve the differential equations, This Needs Some Work!
     sol = integrate.odeint(SIR_model, y0, t_span, args=(a, c, sigma))
 
-    # Extract the solutions for S, I, and R
+    # Extract the solutions for S, I, and R, This Needs Some Work!
     S, I, R = sol[:, 0], sol[:, 1], sol[:, 2]
 
     # Calculate the maximum number of infected individuals, This Needs Some Work!
@@ -55,15 +57,25 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     plt.title('SIR Model')
     plt.legend()
     plt.show()
+    
+    if display_day is not None:
+    # Calculate the population of susceptible, infected and recovered individuals on the specified day
+        idx = np.abs(t_span - display_day).argmin()
+        s_pop, i_pop, r_pop = S[idx], I[idx], R[idx]
+        print(f"On day {display_day}:")
+        print(f"Number of susceptible individuals: {s_pop:.0f}")
+        print(f"Number of infected individuals: {i_pop:.0f}")
+        print(f"Number of recovered individuals: {r_pop:.0f}")
 
     # Return the maximum number of infected individuals
+
     return {"susceptible": S, "infected": I, "recovered": R, "max infected": imax}
 
 
-s0 = 1000  # initial number of susceptible individuals
+s0 = 100  # initial number of susceptible individuals
 i0 = 1     # initial number of infected individuals
-a = 0.2    # rate of infected people infecting susceptible individuals
-c = 0.3    # rate of people coming into contact with an infected person
+a = 0.1    # rate of infected people infecting susceptible individuals
+c = 0.1    # rate of people coming into contact with an infected person
 sigma = 0.1  # rate of people recovering
 t = 100    # total time (in days)
 

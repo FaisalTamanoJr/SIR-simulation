@@ -26,7 +26,6 @@ sol = odeint(SIR_model, y0, t, args=(N, r, sigma))  # Solving the differential e
 
 # Plot the results
 S, I, R = sol.T
-print(S, I, R)
 plt.plot(t, S, 'b', label='Susceptible')  # Plotting the susceptible population
 plt.plot(t, I, 'r', label='Infected')  # Plotting the infected population
 plt.plot(t, R, 'g', label='Recovered')  # Plotting the recovered population

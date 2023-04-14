@@ -44,7 +44,9 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     S, I, R = sol[:, 0], sol[:, 1], sol[:, 2]
 
     # Calculate the maximum number of infected individuals
-    imax = [0, 3]
+    n = (s0 + i0)
+    p = (sigma / (a * c))
+    imax = n - p - (p * np.log(p / s0))
 
     # Return the maximum number of infected individuals
     return {"susceptible": S, "infected": I, "recovered": R, "max infected": imax}

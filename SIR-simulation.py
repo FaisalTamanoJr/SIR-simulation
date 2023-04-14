@@ -75,7 +75,7 @@ def simulate_on_click():
         rateOfSus = round((simulated["susceptible"])[-1])
         rateOfInf = round((simulated["infected"])[-1])
         rateOfRec = round((simulated["recovered"])[-1])
-        maxInf = round((simulated["max infected"])[-1])
+        maxInf = round(simulated["max infected"])
         sus = simulated["susceptible"]
         inf = simulated["infected"]
         rec = simulated["recovered"]

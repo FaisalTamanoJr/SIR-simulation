@@ -4,7 +4,7 @@ The project aims to create a simulation software that predicts the state of indi
 
 ## Installation
 To install the program:
-1. Go to the ![releases](https://github.com/FaisalTamanoJr/SIR-simulation/releases) page.
+1. Go to the [releases](https://github.com/FaisalTamanoJr/SIR-simulation/releases) page.
 2. Download the latest SIR-simulation.exe file posted.
 
 ## How to Use the Program

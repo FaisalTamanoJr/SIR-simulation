@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 import math
 import numpy as np
 import matplotlib.pyplot as plt
@@ -59,7 +57,7 @@ def compute_for_values(s0, i0, a, c, sigma, t):
     plt.title('SIR Model')
     plt.legend()
     plt.show()
-    
+
     if display_day is not None:
     # Calculate the population of susceptible, infected and recovered individuals on the specified day
         idx = np.abs(t_span - display_day).argmin()

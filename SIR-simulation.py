@@ -90,7 +90,7 @@ def simulate_on_click():
         lbl_recRate.pack()
         lbl_infMax.pack()
 
-        sirSim.graph_values(t=var_time, S=sus, I=inf, R=rec)
+        sirSim.graph_values(t=var_time, big_s=sus, big_i=inf, big_r=rec)
 
     else:
         lbl_error = Label(text=simulated)

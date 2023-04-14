@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import integrate
-
+import matplotlib.backends.backend_tkagg
 
 def compute_for_values(s0, i0, a, c, sigma, t):
     # Warn the user if they do not provide a number than their inputs

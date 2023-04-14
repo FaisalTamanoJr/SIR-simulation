@@ -1,12 +1,7 @@
 from tkinter import *
 import sympy as sp
 
-import sirSimulation
-import sirSimulation as sirSim
-
-from scipy.integrate import odeint
-import numpy as np
-import matplotlib.pyplot as plt
+import sirSimulationfunctions as sirSim
 
 window = Tk()
 window.title = 'SIR Model Simulator'
@@ -60,36 +55,42 @@ def simulate_on_click():
         for widget in eqFrame.winfo_children():
             widget.destroy()
 
-    s0 = ent_S0.get()
-    i0 = ent_I0.get()
-    constantA = ent_constantA.get()
-    constantC = ent_constantC.get()
-    constantSigma = ent_constantSigma.get()
-    varTime = ent_varTime.get()
+    initial_s = ent_S0.get()
+    initial_i = ent_I0.get()
+    constant_a = ent_constantA.get()
+    constant_c = ent_constantC.get()
+    constant_sigma = ent_constantSigma.get()
+    var_time = ent_varTime.get()
 
-    s = sp.Symbol('S')
-    i = sp.Symbol('I')
-    r = sp.Symbol('R')
-    a = sp.Symbol('a')
-    c = sp.Symbol('c')
-    sigma = sp.Symbol('σ')
+    sp.Symbol('S')
+    sp.Symbol('I')
+    sp.Symbol('R')
+    sp.Symbol('a')
+    sp.Symbol('c')
+    sp.Symbol('σ')
 
-    simulated = sirSimulation.compute_for_values(s0=s0, i0=i0, a=constantA, c=constantC, sigma=constantSigma, t=varTime)
+    simulated = sirSim.compute_for_values(s0=initial_s, i0=initial_i, a=constant_a, c=constant_c, sigma=constant_sigma,
+                                          t=var_time)
     if type(simulated) == dict:
-        rateOfSus = simulated["susceptible"]
-        rateOfInf = simulated["infected"]
-        rateOfRec = simulated["recovered"]
-        maxInf = simulated["max infected"]
+        rateOfSus = round((simulated["susceptible"])[-1])
+        rateOfInf = round((simulated["infected"])[-1])
+        rateOfRec = round((simulated["recovered"])[-1])
+        maxInf = round((simulated["max infected"])[-1])
+        sus = simulated["susceptible"]
+        inf = simulated["infected"]
+        rec = simulated["recovered"]
 
-        lbl_susRate = Label(eqFrame, text="S(0)=" + str(rateOfSus))
-        lbl_infRate = Label(eqFrame, text="I(0)=" + str(rateOfInf))
-        lbl_recRate = Label(eqFrame, text="R(0)=" + str(rateOfRec))
-        lbl_infMax = Label(eqFrame, text="Imax=" + str(maxInf))
+        lbl_susRate = Label(eqFrame, text="S(" + var_time + ") = " + str(rateOfSus))
+        lbl_infRate = Label(eqFrame, text="I(" + var_time + ") = " + str(rateOfInf))
+        lbl_recRate = Label(eqFrame, text="R(" + var_time + ") = " + str(rateOfRec))
+        lbl_infMax = Label(eqFrame, text="Imax = " + str(maxInf))
 
         lbl_susRate.pack()
         lbl_infRate.pack()
         lbl_recRate.pack()
         lbl_infMax.pack()
+
+        sirSim.graph_values(t=var_time, S=sus, I=inf, R=rec)
 
     else:
         lbl_error = Label(text=simulated)
